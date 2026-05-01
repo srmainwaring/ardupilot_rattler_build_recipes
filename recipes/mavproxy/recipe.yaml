@@ -1,0 +1,40 @@
+context:
+  name: mavproxy
+  version: "1.8.74"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ArduPilot/MAVProxy/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 7f8673723d8239deecc8c2e93490a6362c8899fcd7ef44d1f35f451f709f2edf
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - $PYTHON -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - python >=3.12,<3.13
+    - pip
+  run:
+    - python >=3.12,<3.13
+    - pymavlink >=2.4.14
+    - pyserial >=3.0
+    - numpy
+
+tests:
+  - script: []
+
+about:
+  homepage: https://github.com/ardupilot/mavproxy
+  summary: MAVLink proxy and command line ground station
+  description: |
+    This is a MAVLink ground station written in python.
+    Please see https://ardupilot.org/mavproxy/index.html for more information
+    This ground station was developed as part of the CanberraUAV OBC
+    team entry
+  license: GPL-3.0-or-later
