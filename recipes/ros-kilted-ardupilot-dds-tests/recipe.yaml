@@ -1,0 +1,51 @@
+context:
+  name: ardupilot-dds-tests
+  version: "4.7.0"
+  distro: kilted
+
+package:
+  name: ros-${{ distro }}-${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/ArduPilot/ardupilot.git
+  rev: 571e8c7bd3793fce1bc5184a2f6586feb8a616e5
+
+build:
+  number: 0
+  script:
+    - $PYTHON -m pip install ${SRC_DIR}/Tools/ros2/ardupilot_dds_tests --no-deps -vv
+
+requirements:
+  build:
+    - python >=3.12,<3.13
+  host:
+    - python >=3.12,<3.13
+    - pip
+    - ros-kilted-ament-cmake
+    - ros-kilted-ament-cmake-pytest
+    - ros-kilted-ament-lint-auto
+    - ros-kilted-ament-cmake-python
+  run:
+    - python >=3.12,<3.13
+    - ros-kilted-ament_index_python
+    - ros-kilted-ardupilot-msgs = 4.7.0
+    - ros-kilted-ardupilot_sitl = 4.7.0
+    - ros-kilted-launch
+    - ros-kilted-launch_pytest
+    - ros-kilted-launch_ros
+    - ros-kilted-micro_ros_msgs >=6.0,<7
+    - ros-kilted-rclpy
+    - ros-kilted-socat
+
+tests:
+  - script: []
+
+about:
+  homepage: https://github.com/ArduPilot/ardupilot
+  summary: This is a colcon package for running ArduPilot SITL using the ROS 2
+  description: |
+    ROS 2 packages and configuration files for running ROS 2 processes and
+    nodes that communicate with the ArduPilot DDS client library using the
+    microROS agent.
+  license: GPL-3.0-only
