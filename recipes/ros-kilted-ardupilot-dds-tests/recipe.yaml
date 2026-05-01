@@ -28,15 +28,15 @@ requirements:
     - ros-kilted-ament-cmake-python
   run:
     - python >=3.12,<3.13
-    - ros-kilted-ament_index_python
+    - ros-kilted-ament-index-python
     - ros-kilted-ardupilot-msgs = 4.7.0
-    - ros-kilted-ardupilot_sitl = 4.7.0
+    - ros-kilted-ardupilot-sitl = 4.7.0
     - ros-kilted-launch
-    - ros-kilted-launch_pytest
-    - ros-kilted-launch_ros
-    - ros-kilted-micro_ros_msgs >=6.0,<7
+    - ros-kilted-launch-pytest
+    - ros-kilted-launch-ros
+    - ros-kilted-micro-ros-msgs >=6.0,<7
     - ros-kilted-rclpy
-    - ros-kilted-socat
+    - socat
 
 tests:
   - script: []
