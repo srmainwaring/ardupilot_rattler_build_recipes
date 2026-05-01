@@ -1,0 +1,46 @@
+context:
+  name: micro-xrce-dds-client
+  version: "3.0.0"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/eProsima/Micro-XRCE-DDS-Client.git
+  tag: v${{ version }}
+  expected_commit: 9e05a62f3352ce5bf1cec0d2b518391179213ce6
+
+build:
+  number: 0
+  script:
+    - |
+      cmake -S $SRC_DIR -B build -G "Ninja" \
+        -DCMAKE_INSTALL_PREFIX=$PREFIX \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -DUCLIENT_SUPERBUILD=OFF \
+        -DUCLIENT_ISOLATED_INSTALL:BOOL=ON \
+        -DBUILD_SHARED_LIBS=ON
+    - cmake --build build --target install
+
+requirements:
+  host:
+    - cmake
+    - compilers
+    - ninja
+    - micro-cdr = 2.0
+  run:
+    - micro-cdr = 2.0
+
+tests:
+  - script: []
+
+about:
+  homepage: https://github.com/eProsima/Micro-XRCE-DDS-Client
+  summary: The Micro XRCE-DDS Client
+  description: |
+    The Micro XRCE-DDS Clients are lightweight entities meant to be
+    compiled on eXtremely Resource Constrained Environments.
+  license: Apache-2.0
+  license_file: LICENSE
