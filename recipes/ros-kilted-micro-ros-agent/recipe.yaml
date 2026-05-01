@@ -1,0 +1,81 @@
+context:
+  name: micro-ros-agent
+  version: "6.1.0"
+  distro: kilted
+
+package:
+  name: ros-${{ distro }}-${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/micro-ROS/micro-ROS-Agent.git
+  tag: ${{ version }}
+  expected_commit: 3cb79112ce21dc2e97789d6dc161ff47ac37518c
+
+build:
+  number: 0
+  script:
+    - |
+      cmake -S ${SRC_DIR}/micro_ros_agent -B build -G "Ninja" \
+        -DCMAKE_INSTALL_PREFIX=$PREFIX \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+        -DBUILD_SHARED_LIBS=ON \
+        -DPython3_EXECUTABLE=$PREFIX/bin/python \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -DMICROROSAGENT_SUPERBUILD=OFF \
+        -DUAGENT_USE_SYSTEM_LOGGER=ON
+    - cmake --build build --target install
+
+requirements:
+  build:
+    - python >=3.12,<3.13
+  host:
+    - compilers
+    - cmake
+    - micro-cdr = 2.0
+    - micro-xrce-dds-client = 3.0
+    - micro-xrce-dds-agent = 3.0
+    - ninja
+    - python >=3.12,<3.13
+    - ros-kilted-ament-cmake
+    - ros-kilted-ament-cmake-gtest
+    - ros-kilted-ament-lint-auto
+    - ros-kilted-ament-package
+    - ros-kilted-builtin-interfaces
+    - ros-kilted-fastcdr >=2.3.5,<3
+    - ros-kilted-fastdds >=3.2.3,<4
+    - ros-kilted-micro-ros-msgs = 6.0
+    - ros-kilted-rcutils
+    - ros-kilted-rmw
+    - ros-kilted-rmw-dds-common
+    - ros-kilted-rmw-fastrtps-shared-cpp
+    - ros-kilted-rosidl-cmake
+    - ros-kilted-rosidl-cmake
+    - ros-kilted-rosidl-default-generators
+    - ros-kilted-rosidl-runtime-cpp
+    - ros-kilted-rosidl-typesupport-cpp
+    - ros-kilted-rosidl-typesupport-fastrtps-cpp
+  run:
+    - python >=3.12,<3.13
+    - ros-kilted-rcutils
+    - ros-kilted-micro-ros-msgs = 6.0
+    - ros-kilted-rmw
+    - ros-kilted-rmw-dds-common
+    - ros-kilted-rmw-fastrtps-shared-cpp
+
+tests:
+  - script: []
+
+
+about:
+  homepage: https://github.com/micro-ROS/micro-ROS-Agent
+  summary: ROS 2 package using Micro XRCE-DDS Agent
+  description: |
+    Micro-ROS Agent is a ROS 2 node that wraps the Micro XRCE-DDS Agent.
+    The node acts as a server between DDS Network and Micro-ROS nodes
+    inside MCU. It receives and send messages from Micro-ROS nodes, and keep
+    track of the Micro-ROS nodes exposing them to the ROS 2 network. The node
+    interacts with DDS Global Data Space on behalf of the Micro-ROS nodes.
+  license: Apache-2.0
+  license_file: LICENSE
