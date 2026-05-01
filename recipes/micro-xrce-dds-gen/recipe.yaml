@@ -1,0 +1,52 @@
+context:
+  name: micro-xrce-dds-gen
+  version: "4.7.2"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/ArduPilot/Micro-XRCE-DDS-Gen.git
+  tag: v4.7.2
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - git submodule update --recursive
+    - export GRADLE_USER_HOME=$SRC_DIR/.gradle
+    - ./gradlew --no-daemon assemble
+    - mkdir -p $PREFIX/bin
+    - mkdir -p $PREFIX/share/microxrceddsgen/java
+    - cp share/microxrceddsgen/java/microxrceddsgen.jar $PREFIX/share/microxrceddsgen/java/microxrceddsgen.jar
+    - cp scripts/microxrceddsgen $PREFIX/bin/microxrceddsgen
+    - chmod +x $PREFIX/bin/microxrceddsgen
+
+requirements:
+  host:
+    - git
+    - openjdk = 17
+    - gradle
+  run:
+    - openjdk = 17
+
+tests:
+    - script:
+      - microxrceddsgen -help
+      - test -f $PREFIX/share/microxrceddsgen/java/microxrceddsgen.jar
+
+about:
+  homepage: https://github.com/ArduPilot/Micro-XRCE-DDS-Gen
+  summary: Micro XRCE-DDS IDL code generator tool
+  description: |
+    The Micro XRCE-DDS Gen provides a tool for generate serialization
+    topic code from an idl file using Micro CDR serialization library.
+    Although this tool is intended to be used with Micro XRCE-DDS Client
+    library, the code generated does not depend of it and can be used
+    externally with the only dependence of Micro CDR, used for native
+    serializations.
+  license: Apache-2.0
+  license_file: LICENSE
+  documentation: https://github.com/ArduPilot/Micro-XRCE-DDS-Gen
+  repository: https://github.com/ArduPilot/Micro-XRCE-DDS-Gen
