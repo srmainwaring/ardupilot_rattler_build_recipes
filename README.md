@@ -14,15 +14,14 @@ Publish package to a local channel
 rattler-build publish ./output/osx-arm64/micro-cdr-2.0.1-h60d57d3_0.conda --to ~/.pixi/channels/ardupilot
 ```
 
-Publish package to a local channel, overwriting previous instance
+Store authentication credentials
 
 ```bash
-rattler-build publish --force ./output/osx-arm64/micro-cdr-2.0.1-h60d57d3_0.conda --to ~/.pixi/channels/ardupilot
+pixi auth login prefix.dev --token pfx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-Publish package to prefix-dev
+Publish to private channel and bump build number
 
 ```bash
-rattler-build upload prefix --channel ardupilot ./output/osx-arm64/micro-cdr-2.0.1-h60d57d3_0.conda --api-key pfx_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+rattler-build publish recipe.yaml --to https://prefix.dev/ardupilot -c "conda-forge" -c "https://prefix.dev/ardupilot" --build-number=+1
 ```
-
