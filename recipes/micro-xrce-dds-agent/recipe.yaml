@@ -1,0 +1,62 @@
+context:
+  name: micro-xrce-dds-agent
+  version: "3.0.1"
+  distro: "kilted"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+  tag: v${{ version }}
+  expected_commit: 155cfaaf8b7abac2e85d4a62d3649b09ace0be55
+
+build:
+  number: 0
+  script:
+    - |
+      cmake -S $SRC_DIR -B build -G "Ninja" \
+        -DCMAKE_INSTALL_PREFIX=$PREFIX \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -DUAGENT_SUPERBUILD=OFF \
+        -DUAGENT_USE_SYSTEM_FASTDDS=ON \
+        -DUAGENT_USE_SYSTEM_FASTCDR=ON \
+        -DUAGENT_USE_SYSTEM_LOGGER=ON \
+        -DUAGENT_CED_PROFILE=OFF \
+        -DUAGENT_P2P_PROFILE=OFF \
+        -DUAGENT_SOCKETCAN_PROFILE=OFF \
+        -DUAGENT_BUILD_EXECUTABLE=OFF \
+        -DUAGENT_ISOLATED_INSTALL=OFF \
+        -DBUILD_SHARED_LIBS=ON \
+        -DUAGENT_LOGGER_PROFILE=OFF
+    - cmake --build build --target install
+
+requirements:
+  host:
+    - cmake
+    - compilers
+    - ninja
+    - micro-cdr = 2.0
+    - micro-xrce-dds-client = 3.0
+    - ros-kilted-fastcdr >=2.3.5,<3
+    - ros-kilted-fastdds >=3.2.3,<4
+  run:
+    - micro-cdr = 2.0
+    - micro-xrce-dds-client = 3.0
+    - ros-${{ distro }}-fastcdr >=2.3.5,<3
+    - ros-${{ distro }}-fastdds >=3.2.3,<4
+
+tests:
+  - script: []
+
+
+about:
+  homepage: https://github.com/eProsima/Micro-XRCE-DDS-Agent
+  summary: The Micro XRCE-DDS Agent
+  description: |
+    The Micro XRCE-DDS Agent is a broker which bridges the Clients
+    with the DDS world.
+  license: Apache-2.0
+  license_file: LICENSE
