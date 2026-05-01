@@ -21,6 +21,7 @@ requirements:
     - python >=3.12,<3.13
     - pip
   run:
+    - future
     - python >=3.12,<3.13
     - pymavlink >=2.4.14
     - pyserial >=3.0
