@@ -1,0 +1,56 @@
+context:
+  name: micro-ros-msgs
+  version: "6.0.0"
+  distro: kilted
+
+package:
+  name: ros-${{ distro }}-${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/micro-ROS/micro_ros_msgs.git
+  tag: ${{ version }}
+  expected_commit: 4f1dbf42db9e35b22525e3d408730a450eeb4eea
+
+build:
+  number: 0
+  script:
+    - |
+      cmake -S ${SRC_DIR} -B build -G "Ninja" \
+        -DCMAKE_INSTALL_PREFIX=$PREFIX \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+        -DBUILD_SHARED_LIBS=ON \
+        -DPython3_EXECUTABLE=$PREFIX/bin/python \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+    - cmake --build build --target install
+
+requirements:
+  build:
+    - python >=3.12,<3.13
+  host:
+    - compilers
+    - cmake
+    - ninja
+    - python >=3.12,<3.13
+    - ros-kilted-ament-cmake
+    - ros-kilted-ament-lint-auto
+    - ros-kilted-rosidl-default-generators
+    - ros-kilted-rosidl-default-runtime
+  run:
+    - python >=3.12,<3.13
+    - ros-kilted-rosidl-default-runtime
+
+tests:
+  - script: []
+
+
+about:
+  homepage: https://github.com/micro-ROS/micro_ros_msgs
+  summary: Collection of ROS 2 message definitions used in micro-ROS
+  description: |
+    Collection of ROS 2 message definitions used throughout the implementation
+    of micro-ROS, both in the server (micro-ROS Agent) and
+    client (micro-ROS RMW) endpoints.
+  license: Apache-2.0
+  license_file: LICENSE
