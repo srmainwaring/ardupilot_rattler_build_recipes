@@ -1,0 +1,48 @@
+# https://github.com/conda-forge/gnureadline-feedstock/blob/d4837435d0f6d0483944dd53fc9b822a34589823/recipe/meta.yaml
+context:
+  name: gnureadline
+  version: "8.2.13"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/gnureadline-${{ version }}.tar.gz
+  sha256: c9b9e1e7ba99a80bb50c12027d6ce692574f77a65bf57bc97041cf81c0f49bd1
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - $PYTHON -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - compilers
+
+  host:
+    - python >=3.12,<3.13
+    - pip
+    - setuptools
+
+  run:
+    - python >=3.12,<3.13
+
+tests:
+  - python:
+      imports:
+        - gnureadline
+        - override_readline
+        - readline
+
+about:
+  homepage: http://github.com/ludwigschwardt/python-gnureadline
+  summary: The standard Python readline extension statically linked against the GNU readline library
+  description: |
+    The standard Python readline extension statically linked against the GNU
+    readline library, providing readline support to Python on platforms
+    without it.
+  license: GPL-3.0-only
+  license_file: LICENSE
+
