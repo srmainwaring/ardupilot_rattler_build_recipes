@@ -35,3 +35,13 @@ requirements:
 tests:
   - script: []
 
+about:
+  homepage: https://github.com/micro-ROS/micro-ROS-Agent
+  summary: Python MAVLink interface and utilities
+  description: |
+    This is a Python implementation of the MAVLink protocol. It includes a
+    source code generator (generator/mavgen.py) to create MAVLink protocol
+    implementations for other programming languages as well. Also contains
+    tools for analyzing flight logs.
+  license: GPL-3.0-or-later
+  license_file: LICENSE
