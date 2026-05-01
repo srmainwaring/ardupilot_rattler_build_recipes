@@ -1,0 +1,37 @@
+context:
+  name: pymavlink
+  version: "2.4.49"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/21/a2/0a4ce323178f60f869e42a2ed3844bead7b685807674bef966a39661606e/pymavlink-2.4.49.tar.gz
+  sha256: d7cf10d5592d038a18aa972711177ebb88be2143efcc258df630b0513e9da2c2
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - $PYTHON -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - cython
+    - lxml >=3.6.0
+    - numpy
+    - python >=3.12,<3.13
+    - pip
+    - pyserial
+    - pytest <=7.4.4
+    - setuptools >=42
+    - wheel >=0.37.1
+    - wsproto
+
+  run:
+    - python >=3.12,<3.13
+
+tests:
+  - script: []
+
