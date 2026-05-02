@@ -1,6 +1,6 @@
 context:
   name: ardupilot-msgs
-  version: "4.7.0"
+  version: "4.8.0"
   distro: kilted
 
 package:
@@ -9,7 +9,7 @@ package:
 
 source:
   git: https://github.com/ArduPilot/ardupilot.git
-  rev: 571e8c7bd3793fce1bc5184a2f6586feb8a616e5
+  rev: 8530bf14d1768057ed88cf3a9c1a5db42e32d06c
 
 build:
   number: 0
