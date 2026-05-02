@@ -1,0 +1,71 @@
+context:
+  name: ardupilot-gz-gazebo
+  version: "0.1.0"
+  distro: kilted
+  gz_version: ionic
+
+package:
+  name: ros-${{ distro }}-${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/ArduPilot/ardupilot_gz.git
+  rev: 8df4dc1726e37504e6fc8b952d02e554cfa3176f
+
+build:
+  number: 0
+  script:
+    env:
+      GZ_VERSION: ${{ gz_version }}
+    content:
+      - |
+        cmake -S $SRC_DIR/ardupilot_gz_gazebo -B build -G "Ninja" \
+          -DCMAKE_INSTALL_PREFIX=$PREFIX \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+          -DBUILD_SHARED_LIBS=ON \
+          -DPython3_EXECUTABLE=$PREFIX/bin/python \
+          -DCMAKE_INSTALL_LIBDIR=lib \
+      - cmake --build build --target install
+
+requirements:
+  build:
+    - python >=3.12,<3.13
+  host:
+    - compilers
+    - cmake
+    - ninja
+    - python >=3.12,<3.13
+    - ros-kilted-ament-cmake
+    - ros-kilted-ament-cmake-copyright
+    - ros-kilted-ament-cmake-cppcheck
+    - ros-kilted-ament-cmake-cpplint
+    - ros-kilted-ament-cmake-flake8
+    - ros-kilted-ament-cmake-lint-cmake
+    - ros-kilted-ament-cmake-mypy
+    #- ros-kilted-ament-cmake-pclint
+    - ros-kilted-ament-cmake-pep257
+    #- ros-kilted-ament-cmake-pycodestyle
+    - ros-kilted-ament-cmake-xmllint
+    - ros-kilted-ament-lint-auto
+    - ros-kilted-ament-lint-common
+    - ros-kilted-gz-common-vendor = 0.2
+    - ros-kilted-gz-cmake-vendor = 0.3
+    - ros-kilted-gz-plugin-vendor = 0.2
+    - ros-kilted-gz-sim-vendor = 0.2
+  run:
+    - python >=3.12,<3.13
+    - ros-kilted-gz-sim-vendor = 0.2
+
+tests:
+  - script: []
+
+
+about:
+  homepage: https://github.com/ArduPilot/ardupilot_gz
+  summary: About
+    Tools for ArduPilot ROS2 integration and testing on ROS 2
+  description: |
+    This project contains ROS 2 packages for simulating models controlled
+    by ArduPilot SITL with DDS support in Gazebo.
+  license: GPL-3.0-only
