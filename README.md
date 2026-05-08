@@ -23,5 +23,5 @@ pixi auth login prefix.dev --token pfx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 Publish to private channel and bump build number
 
 ```bash
-rattler-build publish recipe.yaml --to https://prefix.dev/ardupilot -c "conda-forge" -c "robostack-kilted" -c "https://prefix.dev/ardupilot" --build-number=+1
+rattler-build publish --recipe ./recipe.yaml -c "https://prefix.dev/ardupilot" -c "robostack-kilted" -c "conda-forge" --build-number=+1 --to https://prefix.dev/ardupilot
 ```
