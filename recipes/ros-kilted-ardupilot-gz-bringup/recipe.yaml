@@ -36,29 +36,29 @@ requirements:
     - cmake
     - ninja
     - python >=3.12,<3.13
-    - ros-kilted-ament-cmake
-    - ros-kilted-ament-cmake-pytest
-    - ros-kilted-ament-cmake-python
-    - ros-kilted-ament-index-python
-    - ros-kilted-ament-lint-auto
-    - ros-kilted-ament-lint-common
-    - ros-kilted-ardupilot-gazebo
-    - ros-kilted-ardupilot-gz-description
-    - ros-kilted-ardupilot-gz-gazebo
-    - ros-kilted-ardupilot-sitl
-    - ros-kilted-launch
-    - ros-kilted-launch-ros
-    - ros-kilted-ros-gz-sim
-    - ros-kilted-gps-msgs
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ament-cmake-pytest
+    - ros-${{ distro }}-ament-cmake-python
+    - ros-${{ distro }}-ament-index-python
+    - ros-${{ distro }}-ament-lint-auto
+    - ros-${{ distro }}-ament-lint-common
+    - ros-${{ distro }}-ardupilot-gazebo
+    - ros-${{ distro }}-ardupilot-gz-description
+    - ros-${{ distro }}-ardupilot-gz-gazebo
+    - ros-${{ distro }}-ardupilot-sitl
+    - ros-${{ distro }}-launch
+    - ros-${{ distro }}-launch-ros
+    - ros-${{ distro }}-ros-gz-sim
+    - ros-${{ distro }}-gps-msgs
 
   run:
     - python >=3.12,<3.13
-    - ros-kilted-ardupilot-sitl-models
-    - ros-kilted-gz-sim-vendor = 0.2
-    - ros-kilted-ros-gz-bridge
-    - ros-kilted-robot-state-publisher
-    - ros-kilted-sdformat-urdf
-    - ros-kilted-topic-tools
+    - ros-${{ distro }}-ardupilot-sitl-models
+    - ros-${{ distro }}-gz-sim-vendor = 0.2
+    - ros-${{ distro }}-ros-gz-bridge
+    - ros-${{ distro }}-robot-state-publisher
+    - ros-${{ distro }}-sdformat-urdf
+    - ros-${{ distro }}-topic-tools
 
 tests:
   - script: []

@@ -36,12 +36,12 @@ requirements:
     - cmake
     - ninja
     - python >=3.12,<3.13
-    - ros-kilted-ament-cmake
-    - ros-kilted-ament-lint-auto
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ament-lint-auto
 
   run:
     - python >=3.12,<3.13
-    - ros-kilted-ardupilot-gazebo
+    - ros-${{ distro }}-ardupilot-gazebo
 
 tests:
   - script: []
