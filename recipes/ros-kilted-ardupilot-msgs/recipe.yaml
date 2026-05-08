@@ -33,13 +33,13 @@ requirements:
     - micro-xrce-dds-gen >=4.7.2,<5
     - ninja
     - python >=3.12,<3.13
-    - ros-kilted-ament-cmake
-    - ros-kilted-ament-cmake-pytest
-    - ros-kilted-ament-lint-auto
-    - ros-kilted-geometry-msgs
-    - ros-kilted-rosidl-default-generators
-    - ros-kilted-rosidl-default-runtime
-    - ros-kilted-std-msgs
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ament-cmake-pytest
+    - ros-${{ distro }}-ament-lint-auto
+    - ros-${{ distro }}-geometry-msgs
+    - ros-${{ distro }}-rosidl-default-generators
+    - ros-${{ distro }}-rosidl-default-runtime
+    - ros-${{ distro }}-std-msgs
   run:
     - python >=3.12,<3.13
 

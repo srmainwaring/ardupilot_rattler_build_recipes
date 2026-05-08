@@ -33,13 +33,13 @@ requirements:
     - cmake
     - ninja
     - python >=3.12,<3.13
-    - ros-kilted-ament-cmake
-    - ros-kilted-ament-lint-auto
-    - ros-kilted-rosidl-default-generators
-    - ros-kilted-rosidl-default-runtime
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ament-lint-auto
+    - ros-${{ distro }}-rosidl-default-generators
+    - ros-${{ distro }}-rosidl-default-runtime
   run:
     - python >=3.12,<3.13
-    - ros-kilted-rosidl-default-runtime
+    - ros-${{ distro }}-rosidl-default-runtime
 
 tests:
   - script: []

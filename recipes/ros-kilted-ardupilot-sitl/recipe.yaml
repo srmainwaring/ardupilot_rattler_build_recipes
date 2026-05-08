@@ -35,24 +35,24 @@ requirements:
     - ninja
     - pexpect >=4.9.0,<5
     - python >=3.12,<3.13
-    - ros-kilted-ament-cmake
-    - ros-kilted-ament-cmake-pytest
-    - ros-kilted-ament-lint-auto
-    - ros-kilted-ament-cmake-python
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ament-cmake-pytest
+    - ros-${{ distro }}-ament-lint-auto
+    - ros-${{ distro }}-ament-cmake-python
   run:
     - python >=3.12,<3.13
-    - ros-kilted-ardupilot-msgs >=4.8
-    - ros-kilted-builtin-interfaces
-    - ros-kilted-geographic-msgs
-    - ros-kilted-geometry-msgs
-    - ros-kilted-micro-ros-agent >=6.1.0,<7
-    - ros-kilted-micro-ros-msgs >=6.0,<7
-    - ros-kilted-rosgraph-msgs
-    - ros-kilted-rosidl-default-generators
-    - ros-kilted-rosidl-default-runtime
-    - ros-kilted-sensor-msgs
-    - ros-kilted-std-msgs
-    - ros-kilted-tf2-msgs
+    - ros-${{ distro }}-ardupilot-msgs >=4.8
+    - ros-${{ distro }}-builtin-interfaces
+    - ros-${{ distro }}-geographic-msgs
+    - ros-${{ distro }}-geometry-msgs
+    - ros-${{ distro }}-micro-ros-agent >=6.1.0,<7
+    - ros-${{ distro }}-micro-ros-msgs >=6.0,<7
+    - ros-${{ distro }}-rosgraph-msgs
+    - ros-${{ distro }}-rosidl-default-generators
+    - ros-${{ distro }}-rosidl-default-runtime
+    - ros-${{ distro }}-sensor-msgs
+    - ros-${{ distro }}-std-msgs
+    - ros-${{ distro }}-tf2-msgs
 
 tests:
   - script: []

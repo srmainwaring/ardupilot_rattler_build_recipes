@@ -38,31 +38,31 @@ requirements:
     - micro-xrce-dds-agent = 3.0
     - ninja
     - python >=3.12,<3.13
-    - ros-kilted-ament-cmake
-    - ros-kilted-ament-cmake-gtest
-    - ros-kilted-ament-lint-auto
-    - ros-kilted-ament-package
-    - ros-kilted-builtin-interfaces
-    - ros-kilted-fastcdr >=2.3.5,<3
-    - ros-kilted-fastdds >=3.2.3,<4
-    - ros-kilted-micro-ros-msgs = 6.0
-    - ros-kilted-rcutils
-    - ros-kilted-rmw
-    - ros-kilted-rmw-dds-common
-    - ros-kilted-rmw-fastrtps-shared-cpp
-    - ros-kilted-rosidl-cmake
-    - ros-kilted-rosidl-cmake
-    - ros-kilted-rosidl-default-generators
-    - ros-kilted-rosidl-runtime-cpp
-    - ros-kilted-rosidl-typesupport-cpp
-    - ros-kilted-rosidl-typesupport-fastrtps-cpp
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ament-cmake-gtest
+    - ros-${{ distro }}-ament-lint-auto
+    - ros-${{ distro }}-ament-package
+    - ros-${{ distro }}-builtin-interfaces
+    - ros-${{ distro }}-fastcdr >=2.3.5,<3
+    - ros-${{ distro }}-fastdds >=3.2.3,<4
+    - ros-${{ distro }}-micro-ros-msgs = 6.0
+    - ros-${{ distro }}-rcutils
+    - ros-${{ distro }}-rmw
+    - ros-${{ distro }}-rmw-dds-common
+    - ros-${{ distro }}-rmw-fastrtps-shared-cpp
+    - ros-${{ distro }}-rosidl-cmake
+    - ros-${{ distro }}-rosidl-cmake
+    - ros-${{ distro }}-rosidl-default-generators
+    - ros-${{ distro }}-rosidl-runtime-cpp
+    - ros-${{ distro }}-rosidl-typesupport-cpp
+    - ros-${{ distro }}-rosidl-typesupport-fastrtps-cpp
   run:
     - python >=3.12,<3.13
-    - ros-kilted-rcutils
-    - ros-kilted-micro-ros-msgs = 6.0
-    - ros-kilted-rmw
-    - ros-kilted-rmw-dds-common
-    - ros-kilted-rmw-fastrtps-shared-cpp
+    - ros-${{ distro }}-rcutils
+    - ros-${{ distro }}-micro-ros-msgs = 6.0
+    - ros-${{ distro }}-rmw
+    - ros-${{ distro }}-rmw-dds-common
+    - ros-${{ distro }}-rmw-fastrtps-shared-cpp
 
 tests:
   - script: []

@@ -22,20 +22,20 @@ requirements:
   host:
     - python >=3.12,<3.13
     - pip
-    - ros-kilted-ament-cmake
-    - ros-kilted-ament-cmake-pytest
-    - ros-kilted-ament-lint-auto
-    - ros-kilted-ament-cmake-python
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ament-cmake-pytest
+    - ros-${{ distro }}-ament-lint-auto
+    - ros-${{ distro }}-ament-cmake-python
   run:
     - python >=3.12,<3.13
-    - ros-kilted-ament-index-python
-    - ros-kilted-ardupilot-msgs >=4.8.0
-    - ros-kilted-ardupilot-sitl >=4.8.0
-    - ros-kilted-launch
-    - ros-kilted-launch-pytest
-    - ros-kilted-launch-ros
-    - ros-kilted-micro-ros-msgs >=6.0,<7
-    - ros-kilted-rclpy
+    - ros-${{ distro }}-ament-index-python
+    - ros-${{ distro }}-ardupilot-msgs >=4.8.0
+    - ros-${{ distro }}-ardupilot-sitl >=4.8.0
+    - ros-${{ distro }}-launch
+    - ros-${{ distro }}-launch-pytest
+    - ros-${{ distro }}-launch-ros
+    - ros-${{ distro }}-micro-ros-msgs >=6.0,<7
+    - ros-${{ distro }}-rclpy
     - socat
 
 tests:
