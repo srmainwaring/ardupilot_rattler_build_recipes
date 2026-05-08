@@ -1,0 +1,81 @@
+context:
+  name: micro-ros-agent
+  version: "5.0.2"
+  distro: jazzy
+
+package:
+  name: ros-${{ distro }}-${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/micro-ROS/micro-ROS-Agent.git
+  tag: ${{ version }}
+  expected_commit: af007872b034d1ed31de4815377031350ab0034b
+
+build:
+  number: 0
+  script:
+    - |
+      cmake -S ${SRC_DIR}/micro_ros_agent -B build -G "Ninja" \
+        -DCMAKE_INSTALL_PREFIX=$PREFIX \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+        -DBUILD_SHARED_LIBS=ON \
+        -DPython3_EXECUTABLE=$PREFIX/bin/python \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -DMICROROSAGENT_SUPERBUILD=OFF \
+        -DUAGENT_USE_SYSTEM_LOGGER=ON
+    - cmake --build build --target install
+
+requirements:
+  build:
+    - python >=3.12,<3.13
+  host:
+    - compilers
+    - cmake
+    - micro-cdr = 2.0
+    - micro-xrce-dds-client = 2.4.3
+    - micro-xrce-dds-agent = 2.4.3
+    - ninja
+    - python >=3.12,<3.13
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ament-cmake-gtest
+    - ros-${{ distro }}-ament-lint-auto
+    - ros-${{ distro }}-ament-package
+    - ros-${{ distro }}-builtin-interfaces
+    - ros-${{ distro }}-fastcdr >=2.2.0,<3
+    - ros-${{ distro }}-fastrtps >=2.13,<3
+    - ros-${{ distro }}-micro-ros-msgs = 5.0.2
+    - ros-${{ distro }}-rcutils
+    - ros-${{ distro }}-rmw
+    - ros-${{ distro }}-rmw-dds-common
+    - ros-${{ distro }}-rmw-fastrtps-shared-cpp
+    - ros-${{ distro }}-rosidl-cmake
+    - ros-${{ distro }}-rosidl-cmake
+    - ros-${{ distro }}-rosidl-default-generators
+    - ros-${{ distro }}-rosidl-runtime-cpp
+    - ros-${{ distro }}-rosidl-typesupport-cpp
+    - ros-${{ distro }}-rosidl-typesupport-fastrtps-cpp
+  run:
+    - python >=3.12,<3.13
+    - ros-${{ distro }}-rcutils
+    - ros-${{ distro }}-micro-ros-msgs = 5.0.2
+    - ros-${{ distro }}-rmw
+    - ros-${{ distro }}-rmw-dds-common
+    - ros-${{ distro }}-rmw-fastrtps-shared-cpp
+
+tests:
+  - script: []
+
+
+about:
+  homepage: https://github.com/micro-ROS/micro-ROS-Agent
+  summary: ROS 2 package using Micro XRCE-DDS Agent
+  description: |
+    Micro-ROS Agent is a ROS 2 node that wraps the Micro XRCE-DDS Agent.
+    The node acts as a server between DDS Network and Micro-ROS nodes
+    inside MCU. It receives and send messages from Micro-ROS nodes, and keep
+    track of the Micro-ROS nodes exposing them to the ROS 2 network. The node
+    interacts with DDS Global Data Space on behalf of the Micro-ROS nodes.
+  license: Apache-2.0
+  license_file: LICENSE

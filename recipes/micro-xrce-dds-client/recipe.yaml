@@ -1,6 +1,7 @@
 context:
   name: micro-xrce-dds-client
-  version: "3.0.0"
+  version: "2.4.3" # jazzy
+  #version: "3.0.0" # kilted
 
 package:
   name: ${{ name }}
@@ -9,7 +10,8 @@ package:
 source:
   git: https://github.com/eProsima/Micro-XRCE-DDS-Client.git
   tag: v${{ version }}
-  expected_commit: 9e05a62f3352ce5bf1cec0d2b518391179213ce6
+  expected_commit: d44dc3fa0c488376e34d26ed92853f1c66dcb670 # jazzy
+  #expected_commit: 9e05a62f3352ce5bf1cec0d2b518391179213ce6 # kilted
 
 build:
   number: 0

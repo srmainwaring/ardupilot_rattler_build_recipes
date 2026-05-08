@@ -1,7 +1,9 @@
 context:
   name: micro-xrce-dds-agent
-  version: "3.0.1"
-  distro: "kilted"
+  version: "2.4.3" # jazzy
+  distro: "jazzy" 
+  #version: "3.0.1" # kilted
+  #distro: "kilted" 
 
 package:
   name: ${{ name }}
@@ -10,7 +12,8 @@ package:
 source:
   git: https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
   tag: v${{ version }}
-  expected_commit: 155cfaaf8b7abac2e85d4a62d3649b09ace0be55
+  expected_commit: 73622810d984349b80bbac0ef55fc0b694d62222 # jazzy
+  #expected_commit: 155cfaaf8b7abac2e85d4a62d3649b09ace0be55 # kilted
 
 build:
   number: 0
@@ -39,14 +42,20 @@ requirements:
     - compilers
     - ninja
     - micro-cdr = 2.0
-    - micro-xrce-dds-client = 3.0
-    - ros-kilted-fastcdr >=2.3.5,<3
-    - ros-kilted-fastdds >=3.2.3,<4
+    - micro-xrce-dds-client = 2.4.3 # jazzy
+    - ros-${{ distro }}-fastcdr >=2.2.0,<3 # jazzy
+    - ros-${{ distro }}-fastrtps >=2.14,<3 # jazzy
+    #- micro-xrce-dds-client = 3.0
+    #- ros-${{ distro }}-fastcdr >=2.3.5,<3 # kilted
+    #- ros-${{ distro }}-fastdds >=3.2.3,<4 # kilted
   run:
     - micro-cdr = 2.0
-    - micro-xrce-dds-client = 3.0
-    - ros-${{ distro }}-fastcdr >=2.3.5,<3
-    - ros-${{ distro }}-fastdds >=3.2.3,<4
+    - micro-xrce-dds-client = 2.4.3 # jazzy
+    - ros-${{ distro }}-fastcdr >=2.2.0,<3 # jazzy
+    - ros-${{ distro }}-fastrtps >=2.14,<3 # jazzy
+    #- micro-xrce-dds-client = 3.0
+    #- ros-${{ distro }}-fastcdr >=2.3.5,<3 # kilted
+    #- ros-${{ distro }}-fastdds >=3.2.3,<4 # kilted
 
 tests:
   - script: []
