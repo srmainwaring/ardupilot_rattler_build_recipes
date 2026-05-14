@@ -1,0 +1,57 @@
+context:
+  name: cm-topic-hardware-component
+  version: "1.0.0"
+  distro: jazzy
+
+package:
+  name: ros-${{ distro }}-${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/ros-controls/topic_based_hardware_interfaces.git
+  tag: ${{ version }}
+  expected_commit: 46bbac4cde5ea23dbd0aff2ab599fffc261c4ed1
+
+build:
+  number: 0
+  script:
+    - |
+      cmake -S ${SRC_DIR}/cm_topic_hardware_component -B build -G "Ninja" \
+        -DCMAKE_INSTALL_PREFIX=$PREFIX \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+        -DBUILD_SHARED_LIBS=ON \
+        -DPython3_EXECUTABLE=$PREFIX/bin/python \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -DBUILD_TESTING=OFF \
+    - cmake --build build --target install
+
+requirements:
+  build:
+    - python >=3.12,<3.13
+  host:
+    - compilers
+    - cmake
+    - ninja
+    - python >=3.12,<3.13
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ros2-control-cmake
+    - ros-${{ distro }}-rclcpp
+    - ros-${{ distro }}-hardware-interface
+    - ros-${{ distro }}-pal-statistics-msgs
+
+  run:
+    - python >=3.12,<3.13
+
+tests:
+  - script: []
+
+
+about:
+  homepage: https://github.com/ros-controls/topic_based_hardware_interfaces
+  summary: A ros2_control hardware component
+  description: |
+    A ros2_control hardware component using pal_statistics messages from
+    controller_manager introspection.
+  license: Apache-2.0
+  license_file: LICENSE

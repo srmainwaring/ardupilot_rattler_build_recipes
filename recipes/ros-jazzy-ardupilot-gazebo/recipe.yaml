@@ -1,0 +1,67 @@
+context:
+  name: ardupilot-gazebo
+  version: "0.1.0"
+  distro: jazzy
+
+package:
+  name: ros-${{ distro }}-${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/ArduPilot/ardupilot_gazebo.git
+  rev: cc0290d964dfa373531963a8fc39093a0836af0a
+
+build:
+  number: 1
+  script:
+    env:
+      GZ_VERSION: "jetty"
+    content:
+      - |
+        cmake -S . -B build -G "Ninja" \
+          -DCMAKE_INSTALL_PREFIX=$PREFIX \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+          -DBUILD_SHARED_LIBS=ON \
+          -DPython3_EXECUTABLE=$PREFIX/bin/python \
+          -DCMAKE_INSTALL_LIBDIR=lib \
+      - cmake --build build --target install
+
+requirements:
+  build:
+    - python >=3.12,<3.13
+  host:
+    - compilers
+    - cmake
+    - ninja
+    - libopencv ==4.12
+    - gstreamer >=1.26.11,<2
+    - gst-plugins-base >=1.26.11,<2
+    - gst-plugins-good >=1.26.11,<2
+    - gst-plugins-bad >=1.26.11,<2
+    - gst-plugins-ugly >=1.26.11,<2
+    - python >=3.12,<3.13
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-gz-cmake-vendor >=0.4.4,<5
+    - ros-${{ distro }}-gz-sim-vendor >=0.4.4,<5
+  run:
+    - gst-plugins-base >=1.26.11,<2
+    - gst-plugins-good >=1.26.11,<2
+    - gst-plugins-bad >=1.26.11,<2
+    - gst-plugins-ugly >=1.26.11,<2
+    - python >=3.12,<3.13
+    - ros-${{ distro }}-gz-sim-vendor = 0.4.4
+
+tests:
+  - script: []
+
+
+about:
+  homepage: https://github.com/ArduPilot/ardupilot_gazebo
+  summary: Plugins and models for vehicle simulation in Gazebo Sim with ArduPilot SITL controllers
+  description: |
+    This is the official ArduPilot plugin for Gazebo. It replaces the
+    previous ardupilot_gazebo plugin and provides support for the recent
+    releases of the Gazebo simulator: Gazebo Garden, Gazebo Harmonic (LTS),
+    Gazebo Ionic and Gazebo Jetty (LTS).
+  license: LGPL-3.0-only

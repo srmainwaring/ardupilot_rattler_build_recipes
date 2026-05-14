@@ -1,0 +1,55 @@
+context:
+  name: ardupilot-sitl-models
+  version: "0.1.0"
+  distro: jazzy
+  gz_version: jetty
+
+package:
+  name: ros-${{ distro }}-${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/ArduPilot/SITL_Models.git
+  rev: 047d6014efa9f974d60f07bc246ca1e8e6ed7e49
+
+build:
+  number: 0
+  script:
+    env:
+      GZ_VERSION: ${{ gz_version }}
+    content:
+      - |
+        cmake -S $SRC_DIR/Gazebo -B build -G "Ninja" \
+          -DCMAKE_INSTALL_PREFIX=$PREFIX \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+          -DBUILD_SHARED_LIBS=ON \
+          -DPython3_EXECUTABLE=$PREFIX/bin/python \
+          -DCMAKE_INSTALL_LIBDIR=lib \
+      - cmake --build build --target install
+
+requirements:
+  build:
+    - python >=3.12,<3.13
+  host:
+    - compilers
+    - cmake
+    - ninja
+    - python >=3.12,<3.13
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ament-lint-auto
+
+  run:
+    - python >=3.12,<3.13
+    - ros-${{ distro }}-ardupilot-gazebo
+
+tests:
+  - script: []
+
+
+about:
+  homepage: https://github.com/ArduPilot/SITL_Models
+  summary: Models of vehicles for SITL
+  description: |
+    Models of vehicles for SITL.
+  license: GPL-3.0-only

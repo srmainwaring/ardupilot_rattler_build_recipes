@@ -1,0 +1,68 @@
+context:
+  name: ardupilot-sitl
+  version: "4.8.0"
+  distro: jazzy
+
+package:
+  name: ros-${{ distro }}-${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/ArduPilot/ardupilot.git
+  rev: 8530bf14d1768057ed88cf3a9c1a5db42e32d06c
+
+build:
+  number: 0
+  script:
+    - |
+      cmake -S ${SRC_DIR}/Tools/ros2/ardupilot_sitl -B build -G "Ninja" \
+        -DCMAKE_INSTALL_PREFIX=$PREFIX \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+        -DBUILD_SHARED_LIBS=ON \
+        -DPython3_EXECUTABLE=$PREFIX/bin/python \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+    - cmake --build build --target install
+
+requirements:
+  build:
+    - python >=3.12,<3.13
+  host:
+    - compilers
+    - cmake
+    - empy = 3.3.4
+    - micro-xrce-dds-gen >=4.7.2,<5
+    - ninja
+    - pexpect >=4.9.0,<5
+    - python >=3.12,<3.13
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ament-cmake-pytest
+    - ros-${{ distro }}-ament-lint-auto
+    - ros-${{ distro }}-ament-cmake-python
+  run:
+    - python >=3.12,<3.13
+    - ros-${{ distro }}-ardupilot-msgs >=4.8
+    - ros-${{ distro }}-builtin-interfaces
+    - ros-${{ distro }}-geographic-msgs
+    - ros-${{ distro }}-geometry-msgs
+    - ros-${{ distro }}-micro-ros-agent >=5.0.2,<6
+    - ros-${{ distro }}-micro-ros-msgs >=5.0.2,<6
+    - ros-${{ distro }}-rosgraph-msgs
+    - ros-${{ distro }}-rosidl-default-generators
+    - ros-${{ distro }}-rosidl-default-runtime
+    - ros-${{ distro }}-sensor-msgs
+    - ros-${{ distro }}-std-msgs
+    - ros-${{ distro }}-tf2-msgs
+
+tests:
+  - script: []
+
+
+about:
+  homepage: https://github.com/ArduPilot/ardupilot
+  summary: This is a colcon package for running ArduPilot SITL using the ROS 2
+  description: |
+    ROS 2 packages and configuration files for running ROS 2 processes and
+    nodes that communicate with the ArduPilot DDS client library using the
+    microROS agent.
+  license: GPL-3.0-only

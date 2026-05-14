@@ -1,0 +1,54 @@
+context:
+  name: ardupilot-msgs
+  version: "4.8.0"
+  distro: jazzy
+
+package:
+  name: ros-${{ distro }}-${{ name }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/ArduPilot/ardupilot.git
+  rev: 8530bf14d1768057ed88cf3a9c1a5db42e32d06c
+
+build:
+  number: 0
+  script:
+    - |
+      cmake -S ${SRC_DIR}/Tools/ros2/ardupilot_msgs -B build -G "Ninja" \
+        -DCMAKE_INSTALL_PREFIX=$PREFIX \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+        -DBUILD_SHARED_LIBS=ON \
+        -DPython3_EXECUTABLE=$PREFIX/bin/python \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+    - cmake --build build --target install
+
+requirements:
+  build:
+    - python >=3.12,<3.13
+  host:
+    - compilers
+    - cmake
+    - micro-xrce-dds-gen >=4.7.2,<5
+    - ninja
+    - python >=3.12,<3.13
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-ament-cmake-pytest
+    - ros-${{ distro }}-ament-lint-auto
+    - ros-${{ distro }}-geometry-msgs
+    - ros-${{ distro }}-rosidl-default-generators
+    - ros-${{ distro }}-rosidl-default-runtime
+    - ros-${{ distro }}-std-msgs
+  run:
+    - python >=3.12,<3.13
+
+tests:
+  - script: []
+
+about:
+  homepage: https://github.com/ArduPilot/ardupilot
+  summary: Custom ROS 2 messages and services for ArduPilot
+  description: |
+    Custom ROS 2 messages and services for ArduPilot.
+  license: GPL-3.0-only
