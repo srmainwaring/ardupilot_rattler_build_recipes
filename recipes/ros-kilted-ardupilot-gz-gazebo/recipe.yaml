@@ -13,7 +13,7 @@ source:
   rev: 8df4dc1726e37504e6fc8b952d02e554cfa3176f
 
 build:
-  number: 0
+  number: 1
   script:
     env:
       GZ_VERSION: ${{ gz_version }}
@@ -43,9 +43,7 @@ requirements:
     - ros-${{ distro }}-ament-cmake-flake8
     - ros-${{ distro }}-ament-cmake-lint-cmake
     - ros-${{ distro }}-ament-cmake-mypy
-    #- ros-${{ distro }}-ament-cmake-pclint
     - ros-${{ distro }}-ament-cmake-pep257
-    #- ros-${{ distro }}-ament-cmake-pycodestyle
     - ros-${{ distro }}-ament-cmake-xmllint
     - ros-${{ distro }}-ament-lint-auto
     - ros-${{ distro }}-ament-lint-common

@@ -13,7 +13,7 @@ source:
   rev: 8df4dc1726e37504e6fc8b952d02e554cfa3176f
 
 build:
-  number: 0
+  number: 1
   script:
     env:
       GZ_VERSION: ${{ gz_version }}
@@ -53,6 +53,9 @@ requirements:
 
   run:
     - python >=3.12,<3.13
+    - ros-${{ distro }}-ardupilot-gz-description
+    - ros-${{ distro }}-ardupilot-gz-gazebo
+    - ros-${{ distro }}-ardupilot-sitl
     - ros-${{ distro }}-ardupilot-sitl-models
     - ros-${{ distro }}-gz-sim-vendor = 0.2
     - ros-${{ distro }}-ros-gz-bridge

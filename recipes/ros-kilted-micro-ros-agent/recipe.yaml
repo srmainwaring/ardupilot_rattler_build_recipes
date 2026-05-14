@@ -13,7 +13,7 @@ source:
   expected_commit: 3cb79112ce21dc2e97789d6dc161ff47ac37518c
 
 build:
-  number: 0
+  number: 1
   script:
     - |
       cmake -S ${SRC_DIR}/micro_ros_agent -B build -G "Ninja" \
@@ -58,6 +58,7 @@ requirements:
     - ros-${{ distro }}-rosidl-typesupport-fastrtps-cpp
   run:
     - python >=3.12,<3.13
+    - micro-xrce-dds-agent = 3.0
     - ros-${{ distro }}-rcutils
     - ros-${{ distro }}-micro-ros-msgs = 6.0
     - ros-${{ distro }}-rmw

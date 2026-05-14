@@ -34,13 +34,13 @@ requirements:
     - cmake
     - ninja
     - python >=3.12,<3.13
-    - ros-kilted-ament-cmake
-    - ros-kilted-angles
-    - ros-kilted-ros2-control-cmake
-    - ros-kilted-rclcpp
-    - ros-kilted-hardware-interface
-    - ros-kilted-pal-statistics-msgs
-    - ros-kilted-sensor-msgs
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-angles
+    - ros-${{ distro }}-ros2-control-cmake
+    - ros-${{ distro }}-rclcpp
+    - ros-${{ distro }}-hardware-interface
+    - ros-${{ distro }}-pal-statistics-msgs
+    - ros-${{ distro }}-sensor-msgs
 
   run:
     - python >=3.12,<3.13

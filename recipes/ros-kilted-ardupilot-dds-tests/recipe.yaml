@@ -12,7 +12,7 @@ source:
   rev: 8530bf14d1768057ed88cf3a9c1a5db42e32d06c
 
 build:
-  number: 0
+  number: 1
   script:
     - $PYTHON -m pip install ${SRC_DIR}/Tools/ros2/ardupilot_dds_tests --no-deps -vv
 
@@ -34,6 +34,7 @@ requirements:
     - ros-${{ distro }}-launch
     - ros-${{ distro }}-launch-pytest
     - ros-${{ distro }}-launch-ros
+    - ros-${{ distro }}-micro-ros-agent >=6.1.0,<7
     - ros-${{ distro }}-micro-ros-msgs >=6.0,<7
     - ros-${{ distro }}-rclpy
     - socat

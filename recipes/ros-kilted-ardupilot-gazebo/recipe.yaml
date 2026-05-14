@@ -12,7 +12,7 @@ source:
   rev: cc0290d964dfa373531963a8fc39093a0836af0a
 
 build:
-  number: 0
+  number: 1
   script:
     env:
       GZ_VERSION: "ionic"
@@ -41,16 +41,16 @@ requirements:
     - gst-plugins-bad >=1.26.11,<2
     - gst-plugins-ugly >=1.26.11,<2
     - python >=3.12,<3.13
-    - ros-kilted-ament-cmake
-    - ros-kilted-gz-cmake-vendor = 0.3
-    - ros-kilted-gz-sim-vendor = 0.2
+    - ros-${{ distro }}-ament-cmake
+    - ros-${{ distro }}-gz-cmake-vendor = 0.3
+    - ros-${{ distro }}-gz-sim-vendor = 0.2
   run:
     - gst-plugins-base >=1.26.11,<2
     - gst-plugins-good >=1.26.11,<2
     - gst-plugins-bad >=1.26.11,<2
     - gst-plugins-ugly >=1.26.11,<2
     - python >=3.12,<3.13
-    - ros-kilted-gz-sim-vendor = 0.2
+    - ros-${{ distro }}-gz-sim-vendor = 0.2
 
 tests:
   - script: []
